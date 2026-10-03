@@ -7,16 +7,16 @@ Site estático (HTML, CSS e JS puros) da JB Imper Clean, higienização profissi
 ```
 index.html                 página única com todas as seções
 css/style.css              estilos
-js/config.js               PREÇOS, itens e descontos do simulador (edite aqui)
-js/main.js                 menu, antes/depois e simulador
-img/antes-depois/          fotos de antes e depois (veja LEIA-ME.txt)
+js/config.js               PREÇOS, descontos e fotos de resultados (edite aqui)
+js/main.js                 menu, tabela de preços, resultados e simulador
+img/resultados/            fotos de antes e depois (veja LEIA-ME.txt)
 img/favicon.svg            ícone da aba
 ```
 
 ## Tarefas comuns
 
-- **Mudar preços:** edite `js/config.js`.
-- **Trocar fotos de antes e depois:** coloque `1-antes.jpg`, `1-depois.jpg` etc. em `img/antes-depois/`.
+- **Mudar preços:** edite `js/config.js`. A tabela do topo e a seção de preços se atualizam sozinhas.
+- **Adicionar resultados:** coloque as fotos em `img/resultados/` e adicione um item em `resultados` no `js/config.js`.
 - **Mudar o WhatsApp:** campo `whatsapp` em `js/config.js` e os links `wa.me/...` no `index.html`.
 
 ## Rodar localmente
@@ -28,5 +28,7 @@ python -m http.server 8080
 Depois abra http://localhost:8080.
 
 ## Publicar
+
+Ao alterar CSS ou JS, aumente o número `?v=` nos links do `index.html` para os visitantes não verem a versão antiga em cache.
 
 Todo push na branch `main` atualiza o site no GitHub Pages automaticamente.

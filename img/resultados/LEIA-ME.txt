@@ -1,0 +1,28 @@
+FOTOS DE RESULTADOS
+===================
+
+1. Coloque as fotos nesta pasta (img/resultados/), em .jpg.
+2. Abra js/config.js e adicione um bloco na lista "resultados":
+
+     {
+       titulo: "Cadeiras de escritório (24 un.)",
+       detalhe: "Higienização · Escritório · Votorantim",
+       antes: "img/resultados/cadeiras-antes.jpg",
+       depois: "img/resultados/cadeiras-depois.jpg"
+     }
+
+   - "antes" e "depois" NÃO precisam ser do mesmo ângulo ou luz:
+     o site mostra as duas lado a lado, cada uma com sua etiqueta.
+   - Só tem a foto final? Deixe antes: "" e o site mostra uma foto só.
+   - Se a foto não existir na pasta, o item simplesmente não aparece.
+
+DICAS PARA FOTOS QUE VENDEM
+- Fotos de DETALHE (a mancha de perto, o braço do sofá, o assento)
+  funcionam melhor do que o móvel inteiro, e são fáceis de repetir
+  no depois.
+- Foto do balde/recipiente com a água suja extraída é uma prova
+  visual muito forte do serviço.
+- Para empresas: foto do ambiente pronto (recepção, sala de reunião,
+  van) passa profissionalismo.
+- Prefira foto na horizontal, com luz natural, sem filtro.
+- Tamanho: até ~300 KB por foto (https://squoosh.app comprime).

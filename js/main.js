@@ -28,85 +28,123 @@
     });
   });
 
-  // Sombra no header ao rolar
-  var header = $(".header");
-  var onScroll = function () { header.classList.toggle("is-scrolled", window.scrollY > 10); };
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
-
-  /* ---------------- Antes e depois ---------------- */
-  function placeholder(label, path) {
-    var div = document.createElement("div");
-    div.className = "ba__ph ba__ph--" + label.toLowerCase();
-    div.innerHTML = "<span>📷 Foto " + label + "</span><small>" + path.split("/").pop() + "</small>";
-    return div;
+  function icon(id, cls) {
+    return '<svg class="' + (cls || "ico") + '" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-' + id + '"/></svg>';
+  }
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; });
   }
 
-  function imgOrPlaceholder(src, label) {
+  /* ---------------- Preços de referência (vêm do config) ---------------- */
+  // "A partir de" = primeiro item da categoria (o caso mais comum), não o menor preço,
+  // para não anunciar valores de itens específicos como ônibus por poltrona.
+  function precoBase(cat) {
+    return cat.opcoes[0].preco;
+  }
+  function catById(id) {
+    return CFG.categorias.filter(function (c) { return c.id === id; })[0];
+  }
+
+  // Lista "a partir de" na seção Serviços
+  $$(".pricelist__row[data-cat]").forEach(function (row) {
+    var c = catById(row.dataset.cat);
+    if (!c) { row.hidden = true; return; }
+    $(".pricelist__price strong", row).textContent = brl(precoBase(c)) + (c.unidade === "m²" ? "/m²" : "");
+  });
+  $("#imperPrice").textContent = "+" + Math.round(CFG.impermeabilizacaoPercentual * 100) + "%";
+  $("#minNote").textContent = brl(CFG.valorMinimo);
+
+  // Cartão do topo: itens mais procurados por empresas e residências
+  var destaques = [
+    ["sofa", "Sofá 3 lugares"],
+    ["colchao", "Colchão casal"],
+    ["cadeira", "Cadeira de escritório"],
+    ["poltrona", "Poltrona simples"],
+    ["veiculo", "Carro de passeio (bancos completos)"]
+  ];
+  $("#priceCardList").innerHTML = destaques.map(function (d) {
+    var c = catById(d[0]);
+    var o = c && c.opcoes.filter(function (x) { return x.nome === d[1]; })[0];
+    if (!o) return "";
+    var label = o.nome.replace(/\s*\(.*\)$/, "");
+    return "<li><span>" + esc(label) + "</span><strong>" + brl(o.preco) + "</strong></li>";
+  }).join("");
+
+  var menorFaixa = CFG.descontos.reduce(function (m, d) { return Math.min(m, d.minPecas); }, Infinity);
+  var maiorDesc = CFG.descontos.reduce(function (m, d) { return Math.max(m, d.percentual); }, 0);
+  $("#pcMinPecas").textContent = isFinite(menorFaixa) ? menorFaixa : "";
+  $("#trustMaxDisc").textContent = Math.round(maiorDesc * 100) + "%";
+
+  /* ---------------- Resultados ---------------- */
+  var lightbox = $("#lightbox");
+  var lbImg = $("#lightboxImg");
+  var lbCap = $("#lightboxCap");
+
+  function openLightbox(src, cap) {
+    lbImg.src = src;
+    lbImg.alt = cap;
+    lbCap.textContent = cap;
+    if (lightbox.showModal) lightbox.showModal(); else window.open(src, "_blank");
+  }
+  $("#lightboxClose").addEventListener("click", function () { lightbox.close(); });
+  lightbox.addEventListener("click", function (e) { if (e.target === lightbox) lightbox.close(); });
+
+  function loadImg(src) {
     return new Promise(function (resolve) {
+      if (!src) return resolve(null);
       var img = new Image();
-      img.alt = label;
       img.decoding = "async";
       img.onload = function () { resolve(img); };
-      img.onerror = function () { resolve(placeholder(label, src)); };
+      img.onerror = function () { resolve(null); };
       img.src = src;
     });
   }
 
-  $$(".ba").forEach(function (fig) {
-    var frame = $(".ba__frame", fig);
-    Promise.all([
-      imgOrPlaceholder(fig.dataset.depois, "DEPOIS"),
-      imgOrPlaceholder(fig.dataset.antes, "ANTES")
-    ]).then(function (els) {
-      var after = document.createElement("div");
-      after.className = "ba__layer ba__layer--after";
-      after.appendChild(els[0]);
+  function photoButton(img, label, cap) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "result__photo";
+    b.setAttribute("aria-label", "Ampliar foto: " + cap);
+    img.alt = cap;
+    b.appendChild(img);
+    if (label) {
+      var tag = document.createElement("span");
+      tag.className = "result__label result__label--" + label.toLowerCase();
+      tag.textContent = label;
+      b.appendChild(tag);
+    }
+    b.addEventListener("click", function () { openLightbox(img.src, cap); });
+    return b;
+  }
 
-      var before = document.createElement("div");
-      before.className = "ba__layer ba__layer--before";
-      before.appendChild(els[1]);
-
-      var handle = document.createElement("div");
-      handle.className = "ba__handle";
-      handle.innerHTML = "<span>‹ ›</span>";
-
-      var range = document.createElement("input");
-      range.type = "range";
-      range.min = 0; range.max = 100; range.value = 50;
-      range.className = "ba__range";
-      range.setAttribute("aria-label", "Comparar antes e depois");
-
-      var tagA = document.createElement("span"); tagA.className = "ba__tag ba__tag--a"; tagA.textContent = "Antes";
-      var tagD = document.createElement("span"); tagD.className = "ba__tag ba__tag--d"; tagD.textContent = "Depois";
-
-      frame.append(after, before, handle, tagA, tagD, range);
-
-      var set = function (v) {
-        before.style.clipPath = "inset(0 " + (100 - v) + "% 0 0)";
-        handle.style.left = v + "%";
-        range.value = v;
-      };
-      // Teclado (acessibilidade)
-      range.addEventListener("input", function () { set(range.value); });
-
-      // Arrastar com mouse ou dedo em qualquer ponto da foto.
-      // touch-action: pan-y no CSS mantém a rolagem vertical da página no celular.
-      var dragging = false;
-      var fromEvent = function (e) {
-        var r = frame.getBoundingClientRect();
-        set(Math.max(0, Math.min(100, ((e.clientX - r.left) / r.width) * 100)));
-      };
-      frame.addEventListener("pointerdown", function (e) {
-        dragging = true;
-        if (e.pointerType === "mouse") fromEvent(e);
-      });
-      frame.addEventListener("pointermove", function (e) { if (dragging) fromEvent(e); });
-      ["pointerup", "pointercancel", "pointerleave"].forEach(function (t) {
-        frame.addEventListener(t, function () { dragging = false; });
-      });
-      set(50);
+  var grid = $("#resultsGrid");
+  Promise.all((CFG.resultados || []).map(function (r) {
+    return Promise.all([loadImg(r.antes), loadImg(r.depois)]).then(function (imgs) {
+      return { r: r, antes: imgs[0], depois: imgs[1] };
     });
+  })).then(function (list) {
+    list.forEach(function (it) {
+      if (!it.antes && !it.depois) return; // fotos ainda não enviadas: não exibe
+      var fig = document.createElement("figure");
+      fig.className = "result";
+      var photos = document.createElement("div");
+      photos.className = "result__photos" + (it.antes && it.depois ? "" : " result__photos--single");
+      if (it.antes) photos.appendChild(photoButton(it.antes, "Antes", it.r.titulo + " — antes"));
+      if (it.depois) photos.appendChild(photoButton(it.depois, it.antes ? "Depois" : "", it.r.titulo + (it.antes ? " — depois" : "")));
+      fig.appendChild(photos);
+      var cap = document.createElement("figcaption");
+      cap.innerHTML = "<strong>" + esc(it.r.titulo) + "</strong>" + (it.r.detalhe ? "<span>" + esc(it.r.detalhe) + "</span>" : "");
+      fig.appendChild(cap);
+      grid.appendChild(fig);
+    });
+
+    var cta = document.createElement("div");
+    cta.className = "result result--cta";
+    cta.innerHTML = icon("instagram") +
+      "<strong>Mais trabalhos no Instagram</strong>" +
+      "<p>Publicamos resultados, bastidores e dicas de conservação no perfil @jbimperclean.</p>" +
+      '<a class="btn btn--outline" href="https://www.instagram.com/jbimperclean/" target="_blank" rel="noopener">Ver perfil</a>';
+    grid.appendChild(cta);
   });
 
   /* ---------------- Simulador ---------------- */
@@ -143,7 +181,7 @@
     b.className = "cat" + (i === 0 ? " is-active" : "");
     b.setAttribute("role", "tab");
     b.setAttribute("aria-selected", i === 0);
-    b.innerHTML = '<span class="cat__icon">' + c.icone + "</span><span>" + c.nome + "</span>";
+    b.innerHTML = icon(c.icone, "") + "<span>" + c.nome + "</span>";
     b.addEventListener("click", function () {
       $$(".cat", catGrid).forEach(function (x) { x.classList.remove("is-active"); x.setAttribute("aria-selected", "false"); });
       b.classList.add("is-active");
@@ -203,8 +241,8 @@
 
     var btn = $("#addBtn");
     btn.classList.add("is-done");
-    btn.textContent = "✓ Adicionado";
-    setTimeout(function () { btn.classList.remove("is-done"); btn.textContent = "+ Adicionar ao orçamento"; }, 1100);
+    btn.textContent = "Item adicionado";
+    setTimeout(function () { btn.classList.remove("is-done"); btn.textContent = "Adicionar ao orçamento"; }, 1100);
   });
 
   function itemTotal(it) {
@@ -260,7 +298,7 @@
       var li = document.createElement("li");
       li.className = "summary__item";
       li.innerHTML =
-        '<span class="summary__icon">' + it.icone + "</span>" +
+        icon(it.icone, "summary__icon") +
         '<div class="summary__info"><strong>' + it.nome + "</strong>" +
         "<small>" + fmtQty(it) + (it.imper ? " · com impermeabilização" : "") + "</small></div>" +
         '<span class="summary__price">' + brl(itemTotal(it)) + "</span>" +
