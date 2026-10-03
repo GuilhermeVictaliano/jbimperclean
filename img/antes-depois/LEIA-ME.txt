@@ -12,7 +12,7 @@ Coloque aqui as fotos com estes nomes exatos:
 
 Dicas:
 - Tire as duas fotos do MESMO ângulo e distância.
-- Formato ideal 4:3 (ex.: 1200x900 px). Fotos de celular na horizontal funcionam bem.
+- Formato ideal 3:2 (ex.: 1200x800 px), foto de celular na horizontal. Outros formatos são cortados nas bordas.
 - Mantenha cada foto abaixo de ~300 KB (use https://squoosh.app para comprimir).
 - Para trocar a legenda ou adicionar mais pares, edite a seção "ANTES E DEPOIS" no index.html.
 

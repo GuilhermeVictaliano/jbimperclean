@@ -85,8 +85,26 @@
       var set = function (v) {
         before.style.clipPath = "inset(0 " + (100 - v) + "% 0 0)";
         handle.style.left = v + "%";
+        range.value = v;
       };
+      // Teclado (acessibilidade)
       range.addEventListener("input", function () { set(range.value); });
+
+      // Arrastar com mouse ou dedo em qualquer ponto da foto.
+      // touch-action: pan-y no CSS mantém a rolagem vertical da página no celular.
+      var dragging = false;
+      var fromEvent = function (e) {
+        var r = frame.getBoundingClientRect();
+        set(Math.max(0, Math.min(100, ((e.clientX - r.left) / r.width) * 100)));
+      };
+      frame.addEventListener("pointerdown", function (e) {
+        dragging = true;
+        if (e.pointerType === "mouse") fromEvent(e);
+      });
+      frame.addEventListener("pointermove", function (e) { if (dragging) fromEvent(e); });
+      ["pointerup", "pointercancel", "pointerleave"].forEach(function (t) {
+        frame.addEventListener(t, function () { dragging = false; });
+      });
       set(50);
     });
   });
@@ -145,6 +163,7 @@
     qtyLabel.textContent = un === "m²" ? "Área (m²)" : "Quantidade";
     qtyInput.step = un === "m²" ? "0.5" : "1";
     qtyInput.min = un === "m²" ? "0.5" : "1";
+    qtyInput.inputMode = un === "m²" ? "decimal" : "numeric";
     qtyInput.value = 1;
   }
 
@@ -232,6 +251,7 @@
       list.innerHTML = '<li class="summary__empty">Nenhum item adicionado ainda.</li>';
       $("#summaryTotals").hidden = true;
       sendBtn.disabled = true;
+      updateBar();
       return;
     }
 
@@ -270,7 +290,36 @@
       : "";
 
     sendBtn.disabled = false;
+    updateBar();
   }
+
+  // Barra fixa no celular: mostra total enquanto o resumo está fora da tela
+  var bar = $("#simBar");
+  var simInView = false, summaryInView = false;
+  function updateBar() {
+    var n = state.items.length;
+    if (n) {
+      var p = totalPecas();
+      $("#simBarCount").textContent = p + (p === 1 ? " peça" : " peças");
+      $("#simBarTotal").textContent = brl(calc().total);
+    }
+    var show = n > 0 && simInView && !summaryInView;
+    bar.classList.toggle("is-visible", show);
+    document.body.classList.toggle("in-sim", simInView);
+  }
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) {
+      simInView = es[0].isIntersecting;
+      updateBar();
+    }).observe($("#simulador"));
+    new IntersectionObserver(function (es) {
+      summaryInView = es[0].isIntersecting;
+      updateBar();
+    }, { threshold: 0.25 }).observe($(".summary"));
+  }
+  $("#simBarBtn").addEventListener("click", function () {
+    $(".summary").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
 
   // Enviar para o WhatsApp
   sendBtn.addEventListener("click", function () {
@@ -306,7 +355,9 @@
     L.push("Posso enviar fotos dos estofados para confirmar o valor.");
 
     var url = "https://wa.me/" + CFG.whatsapp + "?text=" + encodeURIComponent(L.join("\n"));
-    window.open(url, "_blank", "noopener");
+    // Se o navegador bloquear a nova aba, abre na mesma
+    var w = window.open(url, "_blank");
+    if (w) { w.opener = null; } else { window.location.href = url; }
   });
 
   renderOptions();
