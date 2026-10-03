@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JB Imper Clean | Higienização de Estofados em Sorocaba e Votorantim</title>
-  <meta name="description" content="Higienização e impermeabilização profissional de sofás, colchões, poltronas, cadeiras e bancos de veículos para empresas, hotéis, escritórios, frotas e residências em Sorocaba e Votorantim. Preços de referência e simulador de orçamento.">
-  <meta name="theme-color" content="#0e3461">
+  <meta name="description" content="Higienização e impermeabilização profissional de sofás, colchões, poltronas, cadeiras e bancos de veículos para empresas, hotéis, escritórios, frotas e residências em Sorocaba e Votorantim. Faça seu orçamento online.">
+  <meta name="theme-color" content="#071b36">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="JB Imper Clean | Higienização Profissional de Estofados">
-  <meta property="og:description" content="Atendimento para empresas e residências em Sorocaba e Votorantim. Preço por peça definido antes do serviço.">
+  <meta property="og:description" content="Atendimento para empresas e residências em Sorocaba e Votorantim. Faça seu orçamento em 1 minuto.">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:image" content="https://guilhermevictaliano.github.io/jbimperclean/img/logo.png">
 
@@ -17,8 +17,9 @@
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=5">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=10">
+  <script>document.documentElement.classList.add("js");</script>
 
   <script type="application/ld+json">
   {
@@ -39,15 +40,18 @@
   <header class="header" id="topo">
     <div class="container header__inner">
       <a href="#topo" class="logo" aria-label="JB Imper Clean - início">
-        <img class="logo__img" src="img/logo.png" width="46" height="46" alt="">
+        <img class="logo__img" src="img/logo.png" width="44" height="44" alt="">
         <span class="logo__text">JB Imper Clean</span>
       </a>
       <nav class="nav" id="nav" aria-label="Menu principal">
+        <a href="#simulador">Orçamento</a>
         <a href="#empresas">Empresas</a>
-        <a href="#servicos">Serviços e preços</a>
-        <a href="#resultados">Resultados</a>
+        <a href="#servicos">Serviços</a>
         <a href="#como-funciona">Como funciona</a>
-        <a href="#simulador" class="btn btn--primary btn--sm">Simular orçamento</a>
+        <a href="#faq">Dúvidas</a>
+        <a href="https://wa.me/5515996649167?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." class="btn btn--primary btn--sm" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><use href="#i-wpp"/></svg> WhatsApp
+        </a>
       </nav>
       <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">
         <span></span><span></span><span></span>
@@ -56,185 +60,50 @@
   </header>
 
   <main>
-    <!-- ============ HERO ============ -->
+    <!-- ============ 1. CHAMADA + COMPARAÇÃO ============ -->
     <section class="hero">
       <div class="container hero__inner">
         <div class="hero__text">
-          <p class="hero__loc"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pin"/></svg> Sorocaba e Votorantim · Atendimento no local</p>
-          <h1>Higienização profissional de estofados para empresas e residências</h1>
-          <p class="lead">Limpeza técnica de sofás, cadeiras, colchões e bancos de veículos em hotéis, escritórios, clínicas e frotas. Preço por peça definido antes do serviço e desconto por volume.</p>
+          <p class="chip"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pin"/></svg> Empresas e residências · Sorocaba e Votorantim</p>
+          <h1>Higienização profissional de <span class="hl">estofados</span></h1>
+          <p class="lead">Sofás, cadeiras, colchões e bancos de veículos limpos de verdade, sem ácaros, manchas e odores. Atendimento no local, com preço por volume para hotéis, escritórios, clínicas e frotas.</p>
           <div class="hero__ctas">
-            <a href="#simulador" class="btn btn--primary btn--lg">Simular orçamento</a>
-            <a href="https://wa.me/5515996649167?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." class="btn btn--outline btn--lg" target="_blank" rel="noopener">
+            <a href="#simulador" class="btn btn--primary btn--lg">Fazer orçamento <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a href="https://wa.me/5515996649167?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." class="btn btn--ghost btn--lg" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><use href="#i-wpp"/></svg> Falar no WhatsApp
             </a>
           </div>
-        </div>
-
-        <aside class="pricecard" aria-labelledby="pricecardTitle">
-          <div class="pricecard__head">
-            <h2 id="pricecardTitle">Tabela de referência</h2>
-            <span>valores por peça</span>
-          </div>
-          <ul class="pricecard__list" id="priceCardList"></ul>
-          <p class="pricecard__foot">Desconto progressivo a partir de <strong id="pcMinPecas">6</strong> peças. <a href="#servicos">Ver todos os preços</a></p>
-        </aside>
-      </div>
-    </section>
-
-    <!-- ============ CONFIANÇA ============ -->
-    <section class="trust" aria-label="Diferenciais">
-      <div class="container trust__grid">
-        <div class="trust__item">
-          <svg class="trust__ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-file"/></svg>
-          <div><strong>Valor fechado antes</strong><span>Você aprova o orçamento antes de começarmos.</span></div>
-        </div>
-        <div class="trust__item">
-          <svg class="trust__ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-percent"/></svg>
-          <div><strong>Desconto por volume</strong><span>Até <b id="trustMaxDisc">15%</b> conforme a quantidade de peças.</span></div>
-        </div>
-        <div class="trust__item">
-          <svg class="trust__ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-shield"/></svg>
-          <div><strong>Higiene de verdade</strong><span>Remoção de sujeira, ácaros, bactérias e odores.</span></div>
-        </div>
-        <div class="trust__item">
-          <svg class="trust__ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg>
-          <div><strong>Agenda flexível</strong><span>Atendimento fora do expediente para empresas.</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ EMPRESAS ============ -->
-    <section class="section" id="empresas">
-      <div class="container split">
-        <div class="split__text">
-          <h2>Para empresas que recebem clientes, hóspedes e pacientes</h2>
-          <p class="section__lead">O estado dos estofados faz parte da imagem do seu negócio. Cuidamos da higienização com agenda planejada, preço por volume e o mínimo de interferência na operação.</p>
-          <ul class="checklist">
-            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><div><strong>Preço por volume</strong> Quanto mais peças, menor o valor por unidade.</div></li>
-            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-repeat"/></svg><div><strong>Manutenção recorrente</strong> Planos mensais, trimestrais ou semestrais com agenda fixa.</div></li>
-            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg><div><strong>Fora do expediente</strong> Atendimento à noite ou no fim de semana para não parar sua operação.</div></li>
+          <ul class="hero__points">
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bolt"/></svg> Orçamento em 1 minuto</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-home"/></svg> Serviço no seu local</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-percent"/></svg> Desconto por volume</li>
           </ul>
-          <a href="#simulador" class="btn btn--primary" data-tipo="empresa">Simular orçamento para empresa</a>
         </div>
 
-        <ul class="segments" aria-label="Segmentos atendidos">
-          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-colchao"/></svg><div><strong>Hotéis e pousadas</strong><span>Colchões, cabeceiras e poltronas</span></div></li>
-          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-building"/></svg><div><strong>Escritórios</strong><span>Cadeiras, recepção e reuniões</span></div></li>
-          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bus"/></svg><div><strong>Transportes e frotas</strong><span>Carros, vans, ônibus e caminhões</span></div></li>
-          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clinic"/></svg><div><strong>Clínicas e consultórios</strong><span>Salas de espera e poltronas</span></div></li>
-          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-utensils"/></svg><div><strong>Restaurantes e bares</strong><span>Cadeiras, banquetas e estofados</span></div></li>
-          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-book"/></svg><div><strong>Escolas e academias</strong><span>Cadeiras e áreas de convivência</span></div></li>
-          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-users"/></svg><div><strong>Salões e eventos</strong><span>Cadeiras e lounges</span></div></li>
-          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-condo"/></svg><div><strong>Condomínios</strong><span>Halls e salões de festa</span></div></li>
-        </ul>
+        <figure class="hero__media">
+          <div class="compare" id="heroCompare" aria-label="Comparação antes e depois"></div>
+          <figcaption class="hero__caption">
+            <span id="heroCaption"></span>
+            <span class="hero__hint"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-drag"/></svg> Arraste para comparar</span>
+          </figcaption>
+        </figure>
       </div>
     </section>
 
-    <!-- ============ SERVIÇOS E PREÇOS ============ -->
-    <section class="section section--alt" id="servicos">
+    <!-- ============ 2. ORÇAMENTO ============ -->
+    <section class="section section--soft" id="simulador">
       <div class="container">
-        <div class="section__head">
-          <h2>Serviços e preços de referência</h2>
-          <p class="section__lead">Higienização com extração profunda e produtos adequados a cada tipo de tecido. Os valores abaixo são por peça e servem como ponto de partida.</p>
+        <div class="section__head section__head--center reveal">
+          <span class="eyebrow">Orçamento online</span>
+          <h2>Monte seu orçamento em 1 minuto</h2>
+          <p>Escolha os estofados, veja a estimativa na hora e envie o pedido direto para o nosso WhatsApp.</p>
         </div>
 
-        <div class="pricelist" id="priceList">
-          <div class="pricelist__row" data-cat="sofa">
-            <svg class="pricelist__ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sofa"/></svg>
-            <div class="pricelist__info"><h3>Sofás</h3><p>De 2 lugares a sofás de canto, retráteis e sofás-cama.</p></div>
-            <div class="pricelist__price"><small>a partir de</small><strong></strong></div>
-          </div>
-          <div class="pricelist__row" data-cat="colchao">
-            <svg class="pricelist__ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-colchao"/></svg>
-            <div class="pricelist__info"><h3>Colchões</h3><p>Solteiro, casal, queen e king. Remoção de ácaros, manchas e odores.</p></div>
-            <div class="pricelist__price"><small>a partir de</small><strong></strong></div>
-          </div>
-          <div class="pricelist__row" data-cat="poltrona">
-            <svg class="pricelist__ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-poltrona"/></svg>
-            <div class="pricelist__info"><h3>Poltronas</h3><p>Fixas, reclináveis e poltronas de auditório.</p></div>
-            <div class="pricelist__price"><small>a partir de</small><strong></strong></div>
-          </div>
-          <div class="pricelist__row" data-cat="cadeira">
-            <svg class="pricelist__ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cadeira"/></svg>
-            <div class="pricelist__info"><h3>Cadeiras</h3><p>Jantar, escritório e banquetas. Ideal para grandes quantidades.</p></div>
-            <div class="pricelist__price"><small>a partir de</small><strong></strong></div>
-          </div>
-          <div class="pricelist__row" data-cat="veiculo">
-            <svg class="pricelist__ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-veiculo"/></svg>
-            <div class="pricelist__info"><h3>Bancos de veículos</h3><p>Carros, SUVs, vans, ônibus e cabines de caminhão.</p></div>
-            <div class="pricelist__price"><small>a partir de</small><strong></strong></div>
-          </div>
-          <div class="pricelist__row" data-cat="tapete">
-            <svg class="pricelist__ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tapete"/></svg>
-            <div class="pricelist__info"><h3>Tapetes e carpetes</h3><p>Limpeza no local, cobrada por metro quadrado.</p></div>
-            <div class="pricelist__price"><small>a partir de</small><strong></strong></div>
-          </div>
-          <div class="pricelist__row">
-            <svg class="pricelist__ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-shield"/></svg>
-            <div class="pricelist__info"><h3>Impermeabilização</h3><p>Camada protetora que repele líquidos e facilita a limpeza do dia a dia.</p></div>
-            <div class="pricelist__price"><small>adicional</small><strong id="imperPrice"></strong></div>
-          </div>
-        </div>
-        <p class="note">O valor final depende do tecido, do tamanho e do estado do estofado, e é sempre confirmado com você antes do serviço. Atendimento mínimo de <span id="minNote"></span>.</p>
-      </div>
-    </section>
-
-    <!-- ============ RESULTADOS ============ -->
-    <section class="section" id="resultados">
-      <div class="container">
-        <div class="section__head">
-          <h2>Resultados</h2>
-          <p class="section__lead">Trabalhos realizados pela nossa equipe. Toque na foto para ampliar.</p>
-        </div>
-        <div class="results" id="resultsGrid"></div>
-      </div>
-    </section>
-
-    <!-- ============ COMO FUNCIONA ============ -->
-    <section class="section section--alt" id="como-funciona">
-      <div class="container">
-        <div class="section__head">
-          <h2>Como funciona</h2>
-        </div>
-        <ol class="steps">
-          <li class="step">
-            <span class="step__n">01</span>
-            <h3>Simulação</h3>
-            <p>Você escolhe os itens no simulador e vê uma estimativa na hora.</p>
-          </li>
-          <li class="step">
-            <span class="step__n">02</span>
-            <h3>Confirmação</h3>
-            <p>Recebemos o pedido no WhatsApp, avaliamos as fotos e confirmamos o valor.</p>
-          </li>
-          <li class="step">
-            <span class="step__n">03</span>
-            <h3>Agendamento</h3>
-            <p>Definimos data e horário, inclusive fora do expediente para empresas.</p>
-          </li>
-          <li class="step">
-            <span class="step__n">04</span>
-            <h3>Execução</h3>
-            <p>Higienização no local, com o ambiente organizado ao final.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ============ SIMULADOR ============ -->
-    <section class="section" id="simulador">
-      <div class="container">
-        <div class="section__head">
-          <h2>Simulador de orçamento</h2>
-          <p class="section__lead">Adicione os estofados, confira a estimativa e envie o pedido direto para o nosso WhatsApp.</p>
-        </div>
-
-        <div class="sim">
+        <div class="sim reveal">
           <div class="sim__main">
 
             <div class="sim__block">
-              <h3 class="sim__title"><span>1</span> Tipo de cliente</h3>
+              <h3 class="sim__title"><span>1</span> Para quem é o serviço?</h3>
               <div class="choice-row" role="radiogroup" aria-label="Tipo de cliente">
                 <label class="choice">
                   <input type="radio" name="tipoCliente" value="residencial" checked>
@@ -262,7 +131,7 @@
             </div>
 
             <div class="sim__block">
-              <h3 class="sim__title"><span>2</span> Itens</h3>
+              <h3 class="sim__title"><span>2</span> O que vamos higienizar?</h3>
               <div class="cat-grid" id="catGrid" role="tablist" aria-label="Categorias"></div>
 
               <div class="adder" id="adder">
@@ -287,7 +156,7 @@
             </div>
 
             <div class="sim__block">
-              <h3 class="sim__title"><span>3</span> Dados para contato</h3>
+              <h3 class="sim__title"><span>3</span> Seus dados</h3>
               <div class="form-grid">
                 <div class="field">
                   <label for="fNome">Nome</label>
@@ -329,9 +198,9 @@
 
           <aside class="sim__summary" aria-live="polite">
             <div class="summary">
-              <h3>Resumo do orçamento</h3>
+              <h3>Seu orçamento</h3>
               <ul class="summary__list" id="summaryList">
-                <li class="summary__empty">Nenhum item adicionado.</li>
+                <li class="summary__empty">Adicione itens para ver a estimativa.</li>
               </ul>
               <div class="summary__totals" id="summaryTotals" hidden>
                 <div class="summary__line"><span>Subtotal</span><span id="tSub">R$ 0</span></div>
@@ -340,7 +209,7 @@
                 <div class="summary__total"><span>Estimativa</span><strong id="tTotal">R$ 0</strong></div>
                 <p class="summary__hint" id="discHint"></p>
               </div>
-              <button type="button" class="btn btn--wpp btn--block" id="sendBtn" disabled>
+              <button type="button" class="btn btn--wpp btn--block btn--lg" id="sendBtn" disabled>
                 <svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><use href="#i-wpp"/></svg>
                 Enviar pelo WhatsApp
               </button>
@@ -351,17 +220,147 @@
       </div>
     </section>
 
-    <!-- ============ FAQ ============ -->
-    <section class="section section--alt" id="faq">
-      <div class="container split split--faq">
-        <div class="split__text">
-          <h2>Perguntas frequentes</h2>
-          <p class="section__lead">Não encontrou sua dúvida? Fale com a gente pelo <a href="https://wa.me/5515996649167" target="_blank" rel="noopener">WhatsApp</a>.</p>
+    <!-- ============ 3. EMPRESAS ============ -->
+    <section class="section" id="empresas">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Para empresas</span>
+          <h2>Estofado limpo é parte da imagem do seu negócio</h2>
+          <p>Atendemos empresas de todos os portes com agenda planejada, preço por volume e o mínimo de interferência na operação.</p>
         </div>
-        <div class="faq">
+
+        <div class="bento">
+          <div class="bento__feature reveal">
+            <h3>Por que empresas escolhem a JB</h3>
+            <ul class="benefits">
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-percent"/></svg><div><strong>Desconto progressivo</strong><span>Quanto mais peças, menor o valor por unidade.</span></div></li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-repeat"/></svg><div><strong>Manutenção recorrente</strong><span>Planos mensais, trimestrais ou semestrais com agenda fixa.</span></div></li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg><div><strong>Fora do expediente</strong><span>À noite ou no fim de semana, sem parar sua operação.</span></div></li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-file"/></svg><div><strong>Valor fechado antes</strong><span>Você aprova o orçamento antes de começarmos.</span></div></li>
+            </ul>
+            <a href="#simulador" class="btn btn--light" data-tipo="empresa">Orçamento para empresa <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+
+          <div class="tile reveal"><span class="tile__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-colchao"/></svg></span><strong>Hotéis e pousadas</strong><span>Colchões, cabeceiras e poltronas</span></div>
+          <div class="tile reveal"><span class="tile__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-building"/></svg></span><strong>Escritórios</strong><span>Cadeiras, recepção e reuniões</span></div>
+          <div class="tile reveal"><span class="tile__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bus"/></svg></span><strong>Transportes e frotas</strong><span>Carros, vans, ônibus e caminhões</span></div>
+          <div class="tile reveal"><span class="tile__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clinic"/></svg></span><strong>Clínicas</strong><span>Salas de espera e poltronas</span></div>
+          <div class="tile reveal"><span class="tile__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-utensils"/></svg></span><strong>Restaurantes</strong><span>Cadeiras, banquetas e estofados</span></div>
+          <div class="tile reveal"><span class="tile__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-book"/></svg></span><strong>Escolas e academias</strong><span>Cadeiras e áreas de convivência</span></div>
+          <div class="tile reveal"><span class="tile__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-users"/></svg></span><strong>Salões e eventos</strong><span>Cadeiras e lounges</span></div>
+          <div class="tile reveal"><span class="tile__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-condo"/></svg></span><strong>Condomínios</strong><span>Halls e salões de festa</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. SERVIÇOS ============ -->
+    <section class="section section--soft" id="servicos">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Serviços</span>
+          <h2>O que higienizamos</h2>
+          <p>Extração profunda com produtos adequados a cada tipo de tecido. Remove sujeira, ácaros, bactérias e odores.</p>
+        </div>
+        <div class="services">
+          <article class="service reveal">
+            <span class="service__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sofa"/></svg></span>
+            <h3>Sofás</h3>
+            <p>De 2 lugares a sofás de canto, retráteis e sofás-cama.</p>
+          </article>
+          <article class="service reveal">
+            <span class="service__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-colchao"/></svg></span>
+            <h3>Colchões</h3>
+            <p>Solteiro, casal, queen e king. Noites de sono mais saudáveis.</p>
+          </article>
+          <article class="service reveal">
+            <span class="service__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-poltrona"/></svg></span>
+            <h3>Poltronas</h3>
+            <p>Fixas, reclináveis e poltronas de auditório.</p>
+          </article>
+          <article class="service reveal">
+            <span class="service__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cadeira"/></svg></span>
+            <h3>Cadeiras</h3>
+            <p>Jantar, escritório e banquetas. Ideal para grandes quantidades.</p>
+          </article>
+          <article class="service reveal">
+            <span class="service__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-veiculo"/></svg></span>
+            <h3>Bancos de veículos</h3>
+            <p>Carros, SUVs, vans, ônibus e cabines de caminhão.</p>
+          </article>
+          <article class="service reveal">
+            <span class="service__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tapete"/></svg></span>
+            <h3>Tapetes e carpetes</h3>
+            <p>Limpeza no local, cobrada por metro quadrado.</p>
+          </article>
+        </div>
+        <div class="banner reveal">
+          <span class="banner__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-shield"/></svg></span>
+          <div>
+            <h3>Impermeabilização</h3>
+            <p>Uma camada protetora que repele líquidos e manchas do dia a dia. Ideal para ambientes de alto fluxo e casas com crianças e pets.</p>
+          </div>
+          <a href="#simulador" class="btn btn--light">Incluir no orçamento</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MAIS RESULTADOS (só aparece com fotos no config) ============ -->
+    <section class="section" id="resultados" hidden>
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Resultados</span>
+          <h2>Mais trabalhos realizados</h2>
+          <p>Toque na foto para ampliar.</p>
+        </div>
+        <div class="results" id="resultsGrid"></div>
+      </div>
+    </section>
+
+    <!-- ============ 5. COMO FUNCIONA ============ -->
+    <section class="section" id="como-funciona">
+      <div class="container">
+        <div class="section__head section__head--center reveal">
+          <span class="eyebrow">Como funciona</span>
+          <h2>Do orçamento ao estofado limpo</h2>
+        </div>
+        <ol class="steps">
+          <li class="step reveal">
+            <span class="step__n">01</span>
+            <h3>Simule</h3>
+            <p>Escolha os itens no simulador e veja a estimativa na hora.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__n">02</span>
+            <h3>Confirme</h3>
+            <p>Recebemos seu pedido no WhatsApp e confirmamos o valor.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__n">03</span>
+            <h3>Agende</h3>
+            <p>Escolha o melhor dia e horário, inclusive fora do expediente.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__n">04</span>
+            <h3>Pronto</h3>
+            <p>Higienização no local, com o ambiente organizado ao final.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ 6. FAQ ============ -->
+    <section class="section section--soft" id="faq">
+      <div class="container faq-wrap">
+        <div class="section__head reveal">
+          <span class="eyebrow">Dúvidas</span>
+          <h2>Perguntas frequentes</h2>
+          <p>Não encontrou sua dúvida? Fale com a gente.</p>
+          <a href="https://wa.me/5515996649167" class="btn btn--primary" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><use href="#i-wpp"/></svg> Tirar dúvida no WhatsApp</a>
+        </div>
+        <div class="faq reveal">
           <details>
             <summary>Como o preço é calculado?</summary>
-            <p>Cada peça tem um valor de referência conforme tipo e tamanho (veja a tabela acima). Impermeabilização é um adicional sobre a limpeza, e pedidos maiores recebem desconto progressivo. Antes de começar, confirmamos o valor final com você.</p>
+            <p>Cada peça tem um valor conforme tipo e tamanho, que você vê no simulador. Impermeabilização é um adicional sobre a limpeza, e pedidos maiores recebem desconto progressivo. Antes de começar, confirmamos o valor final com você.</p>
           </details>
           <details>
             <summary>Quanto tempo leva para secar?</summary>
@@ -389,16 +388,18 @@
 
     <!-- ============ CTA FINAL ============ -->
     <section class="cta-final">
-      <div class="container cta-final__inner">
-        <div>
-          <h2>Solicite um orçamento sem compromisso</h2>
-          <p>Resposta pelo WhatsApp com valor e disponibilidade de agenda.</p>
-        </div>
-        <div class="cta-final__btns">
-          <a href="#simulador" class="btn btn--light btn--lg">Simular orçamento</a>
-          <a href="https://wa.me/5515996649167?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." class="btn btn--outline-light btn--lg" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><use href="#i-wpp"/></svg> WhatsApp
-          </a>
+      <div class="container">
+        <div class="cta-final__box reveal">
+          <div>
+            <h2>Seus estofados como novos, sem sair do lugar</h2>
+            <p>Orçamento gratuito e sem compromisso pelo WhatsApp.</p>
+          </div>
+          <div class="cta-final__btns">
+            <a href="#simulador" class="btn btn--light btn--lg">Fazer orçamento</a>
+            <a href="https://wa.me/5515996649167?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." class="btn btn--ghost btn--lg" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><use href="#i-wpp"/></svg> WhatsApp
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -481,10 +482,12 @@
       <symbol id="i-tapete" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="16" rx="1"/><rect x="8.5" y="7.5" width="7" height="9"/><path d="M7 4V2M10 4V2M14 4V2M17 4V2M7 22v-2M10 22v-2M14 22v-2M17 22v-2"/></symbol>
       <symbol id="i-outros" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><path d="M17 14v6M14 17h6"/></symbol>
       <symbol id="i-expand" viewBox="0 0 24 24"><path d="M14 3.5h6.5V10M10 20.5H3.5V14M20.5 3.5 14 10M3.5 20.5 10 14"/></symbol>
+      <symbol id="i-drag" viewBox="0 0 24 24"><path d="M18 8l4 4-4 4M6 8l-4 4 4 4M2 12h20"/></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2.5 4.5 13.5H12l-1 8 8.5-11H12z"/></symbol>
     </defs>
   </svg>
 
-  <script src="js/config.js?v=5"></script>
-  <script src="js/main.js?v=5"></script>
+  <script src="js/config.js?v=10"></script>
+  <script src="js/main.js?v=10"></script>
 </body>
 </html>

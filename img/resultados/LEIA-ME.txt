@@ -1,8 +1,20 @@
 FOTOS DE RESULTADOS
 ===================
 
-1. Coloque as fotos nesta pasta (img/resultados/), em .jpg.
-2. Abra js/config.js e adicione um bloco na lista "resultados":
+Coloque as fotos nesta pasta (img/resultados/), em .jpg, e indique
+os nomes no arquivo js/config.js.
+
+1) COMPARAÇÃO DO TOPO ("destaque" no config.js)
+   - Foto de antes sobreposta à de depois, com a barra deslizante.
+   - As duas precisam ser do MESMO ângulo, distância e enquadramento
+     (tripé ou celular apoiado no mesmo lugar ajuda muito).
+   - Formato ideal 3:2, na horizontal (ex.: 1200x800 px).
+
+2) MAIS RESULTADOS ("resultados" no config.js)
+   - Seção extra que só aparece quando houver itens.
+   - Antes e depois ficam LADO A LADO, então podem ser de ângulos
+     e luz diferentes.
+   - Só tem a foto final? Deixe antes: "".
 
      {
        titulo: "Cadeiras de escritório (24 un.)",
@@ -11,18 +23,9 @@ FOTOS DE RESULTADOS
        depois: "img/resultados/cadeiras-depois.jpg"
      }
 
-   - "antes" e "depois" NÃO precisam ser do mesmo ângulo ou luz:
-     o site mostra as duas lado a lado, cada uma com sua etiqueta.
-   - Só tem a foto final? Deixe antes: "" e o site mostra uma foto só.
-   - Se a foto não existir na pasta, o item simplesmente não aparece.
-
 DICAS PARA FOTOS QUE VENDEM
 - Fotos de DETALHE (a mancha de perto, o braço do sofá, o assento)
-  funcionam melhor do que o móvel inteiro, e são fáceis de repetir
-  no depois.
-- Foto do balde/recipiente com a água suja extraída é uma prova
-  visual muito forte do serviço.
-- Para empresas: foto do ambiente pronto (recepção, sala de reunião,
-  van) passa profissionalismo.
-- Prefira foto na horizontal, com luz natural, sem filtro.
-- Tamanho: até ~300 KB por foto (https://squoosh.app comprime).
+  são fáceis de repetir no mesmo ângulo depois do serviço.
+- Foto do recipiente com a água suja extraída é uma prova forte.
+- Para empresas: foto do ambiente pronto (recepção, van, sala).
+- Luz natural, sem filtro. Até ~300 KB por foto (squoosh.app).

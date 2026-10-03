@@ -35,47 +35,99 @@
     return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; });
   }
 
-  /* ---------------- Preços de referência (vêm do config) ---------------- */
-  // "A partir de" = primeiro item da categoria (o caso mais comum), não o menor preço,
-  // para não anunciar valores de itens específicos como ônibus por poltrona.
-  function precoBase(cat) {
-    return cat.opcoes[0].preco;
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function loadImg(src) {
+    return new Promise(function (resolve) {
+      if (!src) return resolve(null);
+      var img = new Image();
+      img.decoding = "async";
+      img.onload = function () { resolve(img); };
+      img.onerror = function () { resolve(null); };
+      img.src = src;
+    });
   }
-  function catById(id) {
-    return CFG.categorias.filter(function (c) { return c.id === id; })[0];
+
+  /* ---------------- Comparação antes/depois (topo) ---------------- */
+  function buildCompare(frame, antes, depois, titulo) {
+    var after = document.createElement("div");
+    after.className = "compare__layer";
+    depois.alt = titulo + " depois da higienização";
+    after.appendChild(depois);
+
+    var before = document.createElement("div");
+    before.className = "compare__layer compare__layer--before";
+    antes.alt = titulo + " antes da higienização";
+    before.appendChild(antes);
+
+    var handle = document.createElement("div");
+    handle.className = "compare__handle";
+    handle.innerHTML = '<span>' + icon("drag") + "</span>";
+
+    var tagA = document.createElement("span"); tagA.className = "compare__tag compare__tag--a"; tagA.textContent = "Antes";
+    var tagD = document.createElement("span"); tagD.className = "compare__tag compare__tag--d"; tagD.textContent = "Depois";
+
+    var range = document.createElement("input");
+    range.type = "range"; range.min = 0; range.max = 100; range.value = 50;
+    range.className = "compare__range";
+    range.setAttribute("aria-label", "Comparar antes e depois");
+
+    frame.append(after, before, handle, tagA, tagD, range);
+
+    var set = function (v) {
+      before.style.clipPath = "inset(0 " + (100 - v) + "% 0 0)";
+      handle.style.left = v + "%";
+      range.value = v;
+    };
+    range.addEventListener("input", function () { touched = true; set(range.value); });
+
+    // Arrastar com mouse ou dedo em qualquer ponto da foto.
+    // touch-action: pan-y no CSS mantém a rolagem vertical da página no celular.
+    var dragging = false, touched = false;
+    var fromEvent = function (e) {
+      var r = frame.getBoundingClientRect();
+      set(Math.max(0, Math.min(100, ((e.clientX - r.left) / r.width) * 100)));
+    };
+    frame.addEventListener("pointerdown", function (e) {
+      dragging = true; touched = true;
+      if (e.pointerType === "mouse") fromEvent(e);
+    });
+    frame.addEventListener("pointermove", function (e) { if (dragging) fromEvent(e); });
+    ["pointerup", "pointercancel", "pointerleave"].forEach(function (t) {
+      frame.addEventListener(t, function () { dragging = false; });
+    });
+    set(50);
+
+    // Dica: a barra se move sozinha uma vez para mostrar que dá para arrastar
+    if (!reduceMotion) {
+      setTimeout(function () {
+        var t0 = null, dur = 1800;
+        var step = function (t) {
+          if (touched) return;
+          if (!t0) t0 = t;
+          var p = Math.min(1, (t - t0) / dur);
+          set(50 + Math.sin(p * Math.PI * 2) * 22 * (1 - p * 0.3) * (p < 1 ? 1 : 0));
+          if (p < 1) requestAnimationFrame(step); else set(50);
+        };
+        requestAnimationFrame(step);
+      }, 900);
+    }
+    frame.classList.add("is-ready");
   }
 
-  // Lista "a partir de" na seção Serviços
-  $$(".pricelist__row[data-cat]").forEach(function (row) {
-    var c = catById(row.dataset.cat);
-    if (!c) { row.hidden = true; return; }
-    $(".pricelist__price strong", row).textContent = brl(precoBase(c)) + (c.unidade === "m²" ? "/m²" : "");
-  });
-  $("#imperPrice").textContent = "+" + Math.round(CFG.impermeabilizacaoPercentual * 100) + "%";
-  $("#minNote").textContent = brl(CFG.valorMinimo);
+  var dest = CFG.destaque;
+  var heroFrame = $("#heroCompare");
+  if (dest) {
+    $("#heroCaption").innerHTML = "<strong>" + esc(dest.titulo) + "</strong>" + (dest.detalhe ? " · " + esc(dest.detalhe) : "");
+    Promise.all([loadImg(dest.antes), loadImg(dest.depois)]).then(function (imgs) {
+      if (imgs[0] && imgs[1]) buildCompare(heroFrame, imgs[0], imgs[1], dest.titulo);
+      else $(".hero__media").hidden = true;
+    });
+  } else {
+    $(".hero__media").hidden = true;
+  }
 
-  // Cartão do topo: itens mais procurados por empresas e residências
-  var destaques = [
-    ["sofa", "Sofá 3 lugares"],
-    ["colchao", "Colchão casal"],
-    ["cadeira", "Cadeira de escritório"],
-    ["poltrona", "Poltrona simples"],
-    ["veiculo", "Carro de passeio (bancos completos)"]
-  ];
-  $("#priceCardList").innerHTML = destaques.map(function (d) {
-    var c = catById(d[0]);
-    var o = c && c.opcoes.filter(function (x) { return x.nome === d[1]; })[0];
-    if (!o) return "";
-    var label = o.nome.replace(/\s*\(.*\)$/, "");
-    return "<li><span>" + esc(label) + "</span><strong>" + brl(o.preco) + "</strong></li>";
-  }).join("");
-
-  var menorFaixa = CFG.descontos.reduce(function (m, d) { return Math.min(m, d.minPecas); }, Infinity);
-  var maiorDesc = CFG.descontos.reduce(function (m, d) { return Math.max(m, d.percentual); }, 0);
-  $("#pcMinPecas").textContent = isFinite(menorFaixa) ? menorFaixa : "";
-  $("#trustMaxDisc").textContent = Math.round(maiorDesc * 100) + "%";
-
-  /* ---------------- Resultados ---------------- */
+  /* ---------------- Mais resultados (lado a lado) ---------------- */
   var lightbox = $("#lightbox");
   var lbImg = $("#lightboxImg");
   var lbCap = $("#lightboxCap");
@@ -88,17 +140,6 @@
   }
   $("#lightboxClose").addEventListener("click", function () { lightbox.close(); });
   lightbox.addEventListener("click", function (e) { if (e.target === lightbox) lightbox.close(); });
-
-  function loadImg(src) {
-    return new Promise(function (resolve) {
-      if (!src) return resolve(null);
-      var img = new Image();
-      img.decoding = "async";
-      img.onload = function () { resolve(img); };
-      img.onerror = function () { resolve(null); };
-      img.src = src;
-    });
-  }
 
   function photoButton(img, label, cap) {
     var b = document.createElement("button");
@@ -123,6 +164,7 @@
       return { r: r, antes: imgs[0], depois: imgs[1] };
     });
   })).then(function (list) {
+    var shown = 0;
     list.forEach(function (it) {
       if (!it.antes && !it.depois) return; // fotos ainda não enviadas: não exibe
       var fig = document.createElement("figure");
@@ -136,16 +178,24 @@
       cap.innerHTML = "<strong>" + esc(it.r.titulo) + "</strong>" + (it.r.detalhe ? "<span>" + esc(it.r.detalhe) + "</span>" : "");
       fig.appendChild(cap);
       grid.appendChild(fig);
+      shown++;
     });
-
-    var cta = document.createElement("div");
-    cta.className = "result result--cta";
-    cta.innerHTML = icon("instagram") +
-      "<strong>Mais trabalhos no Instagram</strong>" +
-      "<p>Publicamos resultados, bastidores e dicas de conservação no perfil @jbimperclean.</p>" +
-      '<a class="btn btn--outline" href="https://www.instagram.com/jbimperclean/" target="_blank" rel="noopener">Ver perfil</a>';
-    grid.appendChild(cta);
+    if (shown) $("#resultados").hidden = false;
   });
+
+  /* ---------------- Animação ao rolar ---------------- */
+  var reveals = $$(".reveal");
+  var semAnimacao = reduceMotion || /[?&]static(&|$)/.test(location.search); // ?static: capturas de tela
+  if ("IntersectionObserver" in window && !semAnimacao) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+      });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add("is-in"); });
+  }
 
   /* ---------------- Simulador ---------------- */
   var state = { cat: CFG.categorias[0], items: [] };
@@ -286,7 +336,7 @@
   function renderSummary() {
     var list = $("#summaryList");
     if (!state.items.length) {
-      list.innerHTML = '<li class="summary__empty">Nenhum item adicionado ainda.</li>';
+      list.innerHTML = '<li class="summary__empty">Adicione itens para ver a estimativa.</li>';
       $("#summaryTotals").hidden = true;
       sendBtn.disabled = true;
       updateBar();

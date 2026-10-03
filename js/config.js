@@ -1,13 +1,11 @@
 /* =========================================================
    CONFIGURAÇÃO DO SITE — JB Imper Clean
    ---------------------------------------------------------
-   Edite aqui preços, descontos e fotos de resultados.
+   Edite aqui preços, descontos e fotos.
    Não precisa mexer em nenhum outro arquivo.
 
    - preco: valor em reais por unidade (ou por m², se unidade = "m²")
-   - O preço "a partir de" exibido na seção Serviços é o do
-     PRIMEIRO item de cada categoria. Deixe em primeiro o item
-     mais comum e de menor valor daquele tipo.
+   - Os preços aparecem somente no simulador de orçamento.
    ========================================================= */
 
 window.JB_CONFIG = {
@@ -29,21 +27,26 @@ window.JB_CONFIG = {
   ],
 
   /* -------------------------------------------------------
-     RESULTADOS (fotos de antes e depois)
-     - Coloque as fotos em img/resultados/
-     - "antes" e "depois" podem ser de ângulos diferentes.
+     COMPARAÇÃO DO TOPO (antes/depois com barra deslizante)
+     - As duas fotos precisam ser do MESMO ângulo e enquadramento,
+       porque uma é sobreposta à outra.
+     ------------------------------------------------------- */
+  destaque: {
+    titulo: "Sofá 3 lugares",
+    detalhe: "Higienização completa",
+    antes: "img/resultados/sofa-3-lugares-antes.jpg",
+    depois: "img/resultados/sofa-3-lugares-depois.jpg"
+  },
+
+  /* -------------------------------------------------------
+     MAIS RESULTADOS (seção extra, aparece só se houver itens)
+     - Aqui as fotos ficam lado a lado, então "antes" e "depois"
+       podem ser de ângulos e luz diferentes.
      - Para um trabalho só com foto final, deixe antes: "".
-     - Itens cujas fotos não existirem não aparecem no site.
+     - Coloque as fotos em img/resultados/.
      ------------------------------------------------------- */
   resultados: [
-    {
-      titulo: "Sofá 3 lugares",
-      detalhe: "Higienização completa · Residencial · Sorocaba",
-      antes: "img/resultados/sofa-3-lugares-antes.jpg",
-      depois: "img/resultados/sofa-3-lugares-depois.jpg"
-    }
-    // Exemplo para adicionar outro:
-    // ,{
+    // {
     //   titulo: "Cadeiras de escritório (24 un.)",
     //   detalhe: "Higienização · Escritório · Votorantim",
     //   antes: "img/resultados/cadeiras-antes.jpg",
