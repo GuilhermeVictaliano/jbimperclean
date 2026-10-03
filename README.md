@@ -10,7 +10,7 @@ css/style.css              estilos
 js/config.js               PREÇOS, descontos e fotos de resultados (edite aqui)
 js/main.js                 menu, tabela de preços, resultados e simulador
 img/resultados/            fotos de antes e depois (veja LEIA-ME.txt)
-img/favicon.svg            ícone da aba
+img/logo.png               logo (favicon.png e apple-touch-icon.png derivam dela)
 ```
 
 ## Tarefas comuns
