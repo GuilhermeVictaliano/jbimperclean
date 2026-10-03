@@ -1,0 +1,19 @@
+FOTOS DE ANTES E DEPOIS
+=======================
+
+Coloque aqui as fotos com estes nomes exatos:
+
+  1-antes.jpg   1-depois.jpg    -> Sofá 3 lugares
+  2-antes.jpg   2-depois.jpg    -> Colchão casal
+  3-antes.jpg   3-depois.jpg    -> Cadeiras de escritório
+  4-antes.jpg   4-depois.jpg    -> Poltrona
+  5-antes.jpg   5-depois.jpg    -> Bancos de veículo
+  6-antes.jpg   6-depois.jpg    -> Sofá de canto
+
+Dicas:
+- Tire as duas fotos do MESMO ângulo e distância.
+- Formato ideal 4:3 (ex.: 1200x900 px). Fotos de celular na horizontal funcionam bem.
+- Mantenha cada foto abaixo de ~300 KB (use https://squoosh.app para comprimir).
+- Para trocar a legenda ou adicionar mais pares, edite a seção "ANTES E DEPOIS" no index.html.
+
+Enquanto a foto não existir, o site mostra um espaço reservado no lugar.
