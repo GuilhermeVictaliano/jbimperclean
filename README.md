@@ -1,6 +1,6 @@
 # JB Imper Clean — site
 
-Site estático (HTML, CSS e JS puros) da JB Imper Clean, higienização profissional de estofados em Sorocaba e Votorantim. Hospedado no GitHub Pages.
+Site estático (HTML, CSS e JS puros) da JB Imper Clean, higienização profissional de estofados em Sorocaba e Votorantim. Hospedado no GitHub Pages em https://jbimperclean.com.br.
 
 ## Estrutura
 
@@ -32,3 +32,15 @@ Depois abra http://localhost:8080. Use `?static` na URL para desligar as animaç
 Ao alterar CSS ou JS, aumente o número `?v=` nos links do `index.html` para os visitantes não verem a versão antiga em cache.
 
 Todo push na branch `main` atualiza o site no GitHub Pages automaticamente.
+
+## Domínio
+
+`jbimperclean.com.br` foi registrado no Registro.br, que também cuida do DNS. O arquivo `CNAME` diz ao GitHub Pages qual é o domínio. Registros na zona DNS:
+
+| Tipo  | Nome | Valor |
+|-------|------|-------|
+| A     | (vazio) | 185.199.108.153 |
+| A     | (vazio) | 185.199.109.153 |
+| A     | (vazio) | 185.199.110.153 |
+| A     | (vazio) | 185.199.111.153 |
+| CNAME | www  | guilhermevictaliano.github.io |
