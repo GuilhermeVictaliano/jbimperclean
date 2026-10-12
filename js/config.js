@@ -12,8 +12,9 @@ window.JB_CONFIG = {
   // Número que recebe os orçamentos (DDI + DDD + número, só dígitos)
   whatsapp: "5515998609982",
 
-  // Impermeabilização: acréscimo sobre o valor da limpeza do item (0.5 = +50%)
-  impermeabilizacaoPercentual: 0.5,
+  // Impermeabilização: com a caixa marcada, o valor do item é multiplicado por este número
+  // (2 = dobra: limpeza de R$ 100 com impermeabilização fica R$ 200). Sem a caixa, não muda.
+  impermeabilizacaoMultiplicador: 2,
 
   // Valor mínimo de atendimento (se o total ficar abaixo, cobra este valor). 0 = desativado
   valorMinimo: 150,

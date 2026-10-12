@@ -297,7 +297,7 @@
 
   function itemTotal(it) {
     var base = it.preco * it.qty;
-    return it.imper ? base * (1 + CFG.impermeabilizacaoPercentual) : base;
+    return it.imper ? base * CFG.impermeabilizacaoMultiplicador : base;
   }
 
   // Peças contam por unidade; tapetes (m²) contam como 1 peça por linha
